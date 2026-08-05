@@ -1,0 +1,39 @@
+name: Documentation or policy
+description: Improve project documentation, governance, safety, or privacy policy.
+title: "docs: "
+labels: ["documentation", "area:docs", "state:backlog"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep examples generic. Never copy local vault notes, household details, credentials, tokens, or identifying paths into GitHub.
+  - type: textarea
+    id: target
+    attributes:
+      label: Document or policy area
+      description: Which file, section, workflow, or policy needs attention?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current problem
+      description: What is missing, unclear, inaccurate, or difficult to maintain?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest useful improvement.
+    validations:
+      required: true
+  - type: checkboxes
+    id: accuracy
+    attributes:
+      label: Accuracy and privacy check
+      options:
+        - label: Roadmap items remain clearly separate from implemented capability.
+          required: true
+        - label: Examples contain no personal, household, credential, or identifying local data.
+          required: true

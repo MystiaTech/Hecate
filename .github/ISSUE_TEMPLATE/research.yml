@@ -1,0 +1,51 @@
+name: Research or benchmark
+description: Plan a bounded comparison using public, synthetic, or non-sensitive data.
+title: "research: "
+labels: ["type:research", "state:backlog"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not upload household audio, private prompts, device data, credentials, or identifying benchmark artifacts.
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: What decision should this work inform?
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Proposed method
+      description: Describe a small, reproducible method and its public or synthetic inputs.
+    validations:
+      required: true
+  - type: textarea
+    id: measures
+    attributes:
+      label: Measures and success criteria
+      description: Name the metrics, limits, and comparison criteria.
+    validations:
+      required: true
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Roadmap stage
+      options:
+        - Step Zero
+        - Local Voice MVP
+        - Core Assistant
+        - Future Integrations
+        - Not yet assigned
+    validations:
+      required: true
+  - type: checkboxes
+    id: cost
+    attributes:
+      label: Cost and privacy check
+      options:
+        - label: This plan uses local, public, or synthetic data and does not require a paid service by default.
+          required: true
+        - label: Any optional external cost or data transfer is stated explicitly.
+          required: true
