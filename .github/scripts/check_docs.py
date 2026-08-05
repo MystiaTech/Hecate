@@ -12,10 +12,16 @@ ROOT = Path(__file__).resolve().parents[2]
 
 REQUIRED_FILES = (
     "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "docs/AI_USE.md",
     "docs/BRANCHING.md",
     "docs/GITHUB_PLANNING.md",
+    "docs/GOVERNANCE.md",
     "docs/LOCAL_DATA_BOUNDARY.md",
     "docs/STEP_ZERO_GATES.md",
+    "docs/VOICE_COMPONENT_LICENSE_AUDIT.md",
+    "docs/decisions/0000-template.md",
     "vault/README.md",
     "vault/ROADMAP.md",
     ".github/ISSUE_TEMPLATE/feature.yml",
@@ -23,6 +29,8 @@ REQUIRED_FILES = (
     ".github/ISSUE_TEMPLATE/research.yml",
     ".github/ISSUE_TEMPLATE/docs.yml",
     ".github/pull_request_template.md",
+    ".github/CODEOWNERS",
+    ".github/dependabot.yml",
 )
 
 REQUIRED_PHRASES = {
@@ -39,8 +47,12 @@ REQUIRED_PHRASES = {
     ),
     "docs/STEP_ZERO_GATES.md": (
         "must not be marked complete",
+        "Step 0.0: governance and traceability",
         "Step 0.3: hardware and power validation",
     ),
+    "docs/AI_USE.md": ("No AI assistance", "AI assistance never replaces"),
+    "docs/GOVERNANCE.md": ("## Charter", "## Threat model and data classification"),
+    "CONTRIBUTING.md": ("Do not", "exact-case `Dev`"),
 }
 
 PUBLIC_DATA_PATTERNS = {

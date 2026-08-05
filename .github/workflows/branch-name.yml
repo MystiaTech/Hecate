@@ -15,13 +15,19 @@ jobs:
       - name: Check pull request branch
         env:
           BRANCH_NAME: ${{ github.head_ref }}
+          BASE_BRANCH: ${{ github.base_ref }}
         shell: bash
         run: |
-          pattern='^(feat|fix|docs|chore|release|agent)/[a-z0-9]+([.-][a-z0-9]+)*(/[a-z0-9]+([.-][a-z0-9]+)*)*$'
+          if [[ "$BASE_BRANCH" == "main" && "$BRANCH_NAME" == "Dev" ]]; then
+            echo "Valid release promotion: Dev -> main"
+            exit 0
+          fi
+
+          pattern='^(feat|fix|docs|chore|refactor|test|ci|security|release|agent)/[a-z0-9]+([.-][a-z0-9]+)*(/[a-z0-9]+([.-][a-z0-9]+)*)*$'
 
           if [[ ! "$BRANCH_NAME" =~ $pattern ]]; then
             echo "Invalid branch name: $BRANCH_NAME"
-            echo "Use: feat|fix|docs|chore|release/<lowercase-kebab-case>"
+            echo "Use: feat|fix|docs|chore|refactor|test|ci|security|release/<lowercase-kebab-case>"
             echo "The agent/ prefix is reserved for approved automation."
             echo "See docs/BRANCHING.md for examples and policy details."
             exit 1

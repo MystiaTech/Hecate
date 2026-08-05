@@ -2,19 +2,9 @@ name: Documentation integrity
 
 on:
   pull_request:
-    branches: [Dev]
-    paths:
-      - "**/*.md"
-      - ".github/ISSUE_TEMPLATE/**"
-      - ".github/scripts/check_docs.py"
-      - ".github/workflows/docs-integrity.yml"
+    branches: [Dev, main]
   push:
-    branches: [Dev]
-    paths:
-      - "**/*.md"
-      - ".github/ISSUE_TEMPLATE/**"
-      - ".github/scripts/check_docs.py"
-      - ".github/workflows/docs-integrity.yml"
+    branches: [Dev, main]
   workflow_dispatch:
 
 permissions:
