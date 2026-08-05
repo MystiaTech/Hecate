@@ -11,9 +11,9 @@ outdated, or incorrect. Hecate must validate a request through its own tools,
 permissions, and confirmation rules before taking any action.
 
 Vault notes cannot directly control Hecate, execute commands, grant permission,
-or change runtime behavior. Executable configuration must remain separate from
-Markdown knowledge and belongs under [`config/`](config/README.md), subject to
-future configuration validation.
+or change runtime behavior. Executable configuration and all private runtime
+data must remain outside the Obsidian-visible vault. No runtime location or
+configuration format is selected by this template.
 
 ## Never store secrets here
 
@@ -42,11 +42,31 @@ name when needed; do not copy its value into a note.
   and supporting material.
 - [`ROADMAP.md`](ROADMAP.md) - planned product milestones; not implemented
   capability.
-- [`config/`](config/README.md) - the separate boundary for future executable
-  configuration.
 
 ## Working with the vault
 
-Open the `vault` directory as a vault in Obsidian, or edit the Markdown files in
-any text editor. Keep notes small, link to sources where practical, record when
-information was last verified, and label uncertain claims clearly.
+Open only the deployed `knowledge-vault` directory in Obsidian, or edit its
+Markdown files in any text editor. Keep notes small, link to sources where
+practical, record when information was last verified, and label uncertain
+claims clearly.
+
+## Start from a fork
+
+1. Keep this repository directory as the non-secret template.
+2. Choose a local vault location outside the Git checkout, such as
+   `/home/<username>/<projects-directory>/Hecate/knowledge-vault`.
+3. Copy only `README.md`, `ROADMAP.md`, and `knowledge/` into that location.
+4. Open the copied `knowledge-vault` folder in Obsidian.
+5. Add only non-sensitive starter notes. Keep personal household details local
+   and uncommitted.
+
+First-use check:
+
+- [ ] The deployed vault is outside the repository checkout.
+- [ ] No credentials, codes, tokens, or private keys are present.
+- [ ] No config, state, logs, models, cache, or diagnostics are inside it.
+- [ ] Any sync or backup destination has been reviewed for privacy.
+
+If the deployed vault is still empty, reset it by making a fresh copy from the
+template. After personal notes exist, never replace the whole vault; back it up
+and compare template changes file by file.
