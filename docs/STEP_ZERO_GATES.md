@@ -182,6 +182,9 @@ The gate requires implementation and tests for:
   fail-closed handling of ambiguous, stale, corrupt, or unavailable authority;
 - local, administrator-visible, privacy-minimized activity history attributing
   every state change to a direct request, explicit confirmation, or named rule;
+- rolling local history retention of 90 days by default, with bounded disk use,
+  encrypted backup/protected export, no automatic cloud upload, and authorized
+  administrator control of retention/export under the material-change boundary;
 - brief, plain-language refusals and failure explanations with a safe next step,
   no blame or protected detail, plus an accessible non-voice status path;
 - proactive reminders and package/delivery notices governed by transparent,
