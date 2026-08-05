@@ -15,6 +15,7 @@ REQUIRED_FILES = (
     "docs/BRANCHING.md",
     "docs/GITHUB_PLANNING.md",
     "docs/LOCAL_DATA_BOUNDARY.md",
+    "docs/STEP_ZERO_GATES.md",
     "vault/README.md",
     "vault/ROADMAP.md",
     ".github/ISSUE_TEMPLATE/feature.yml",
@@ -35,6 +36,10 @@ REQUIRED_PHRASES = {
         "<username>",
         "<distro>",
         "<projects-directory>",
+    ),
+    "docs/STEP_ZERO_GATES.md": (
+        "must not be marked complete",
+        "Step 0.3: hardware and power validation",
     ),
 }
 
