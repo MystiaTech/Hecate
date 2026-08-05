@@ -205,6 +205,14 @@ official alert channels, use configurable non-spammy retry/notification behavior
 and announce verified recovery. The severe-alert quiet-hours bypass also applies
 to this loss-of-coverage state. Local core behavior remains available throughout.
 
+Source-backed severe alerts repeat at a controlled cadence until a household
+member acknowledges hearing them; acknowledgement does not resolve the alert,
+which remains visible and reannounces on source update or escalation. When the
+source supplies an explicit deadline, first-run setup defaults to a 50-minute
+preparation reminder that an authorized administrator may change or disable.
+This is source-deadline arithmetic only: Hecate never calculates travel or safe-
+distance time, infers clearance, or gives evacuation/shelter instructions.
+
 Any unresolved safety, offline, audio, data-integrity, privacy, or power failure
 keeps its gate open. Non-gating improvements may move to follow-up issues only
 after review.
