@@ -307,6 +307,50 @@ recovery traceability remains local. Documentation alone does not complete this
 gate; any unresolved duplicate-action, retry, crash-loop, data-integrity,
 privacy, authorization, or fail-visible status defect keeps Step 0.6 open.
 
+## Step 0.7: integrated acceptance and release readiness
+
+The final Step Zero gate verifies Steps 0.0 through 0.6 as one coherent local-
+first system before promotion to the Local Voice MVP. It does not replace an
+earlier gate or claim that any capability is implemented. A traceable matrix
+maps every requirement to its versioned test, result, evidence, reviewer, known
+limitation, and follow-up issue.
+
+The integrated acceptance package requires reproducible, reviewed evidence for:
+
+- local-first installation, startup, shutdown, restart, and recovery on the
+  supported development baseline;
+- operation with the network disabled plus transparent, deliberately enabled
+  behavior for each optional external source or provider;
+- the GitHub-versus-local data boundary, absence of household/private data in
+  public artifacts, and local-only handling of activity and diagnostics;
+- configuration validation, protected-secret recovery, encrypted backup, and a
+  verified restore without weakening administrator or key-custody boundaries;
+- voice-component provenance and licensing plus the selected stack's offline
+  accuracy, latency, queue, wake-phrase, speaker-profile, and resource evidence;
+- WSL/Windows compatibility, audio and GPU/CPU behavior, AC/battery transitions,
+  storage/memory pressure, thermal/resource limits, and safe degraded status;
+- permissions, confirmations, roles, narrow automation, notification, local
+  traceability, retention/export, ambiguity, denial, and high-impact exclusions;
+- reboot, power loss, partial failure, quarantine, idempotency, schedule timing,
+  notification, tiered-update, and rollback fault cases from Step 0.6;
+- accessible voice and non-voice walkthroughs for setup, normal use, refusal,
+  failure, recovery, and administrator review using synthetic scenarios; and
+- required security, dependency, branch, documentation, CI, and human-review
+  checks with documented limitations, deferrals, rollback, and release decision.
+
+Every public evidence artifact is aggregate and sanitized. Recordings,
+transcripts, household or location information, addresses, keys, credentials,
+tokens, private logs, personal identifiers, device identifiers, and private or
+resolved local paths remain local and uncommitted.
+
+A critical failed or unverified requirement blocks promotion. A risk acceptance
+must be explicit, narrowly scoped, time-bounded, linked to an owner and follow-up,
+and reviewed by the appropriate maintainer and authorized administrator; it
+cannot waive a critical local-first, privacy, authorization, action-safety, data-
+integrity, or recovery boundary. Merged documentation is planning evidence only,
+never proof of production readiness. Step 0.7 and Step Zero remain open until
+implementation, reproducible evidence, and human sign-off are complete.
+
 Any unresolved safety, offline, audio, data-integrity, privacy, or power failure
 keeps its gate open. Non-gating improvements may move to follow-up issues only
 after review.
