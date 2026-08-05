@@ -123,6 +123,12 @@ The configuration gate requires reviewed implementations and tests for:
 - explicit creation or selection of the first household administrator during
   setup, never silently inferred from the installing OS, root, or service
   account; the service identity remains separate and least-privileged;
+- multiple household administrators, with authorized addition/removal and a
+  safeguard against removing the final usable administrator;
+- an explicitly configured recovery-only mechanism that can reset only the
+  designated primary-admin credential, has no interactive login or routine
+  permissions, ships with no default secret, and uses protected recovery
+  material with local confirmation, rate limiting, audit, and lost-key guidance;
 - authorized administrator approval plus a full service restart for any change
   that can materially affect operation, privacy, security, data handling, cloud
   fallback, secrets or key factors, integrations, profiles, or permissions;
