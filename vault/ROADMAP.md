@@ -18,11 +18,15 @@
 
 ## 2. Local voice MVP
 
+- Follow the ordered, test-gated [Step One roadmap](../docs/STEP_ONE_ROADMAP.md)
+  from the MVP contract through release-readiness review.
 - Implement an end-to-end local voice loop with wake-word activation.
 - Support a configurable assistant name without hard-coding one identity.
 - Keep the initial implementation compatible with a Windows laptop using WSL2.
 - Make listening, processing, and error states clear to the user.
 - Document privacy limitations and local data handling alongside the code.
+- Keep severe-weather monitoring and other optional external integrations out of
+  the core local MVP; they require their own explicit later gates.
 
 ## 3. Core deterministic tools
 
