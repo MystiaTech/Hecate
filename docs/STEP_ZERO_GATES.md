@@ -120,6 +120,9 @@ The configuration gate requires reviewed implementations and tests for:
 - a first-run wizard that defaults to fully local-only operation with every
   cloud fallback disabled; cloud providers, budgets, and related security
   controls appear only in a separate, deliberately entered advanced path;
+- explicit creation or selection of the first household administrator during
+  setup, never silently inferred from the installing OS, root, or service
+  account; the service identity remains separate and least-privileged;
 - authorized administrator approval plus a full service restart for any change
   that can materially affect operation, privacy, security, data handling, cloud
   fallback, secrets or key factors, integrations, profiles, or permissions;
