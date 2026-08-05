@@ -117,6 +117,9 @@ The configuration gate requires reviewed implementations and tests for:
   lost-key and recovery behavior;
 - a friendly setup flow, plain-language errors, and explicit reload/restart
   semantics;
+- a first-run wizard that defaults to fully local-only operation with every
+  cloud fallback disabled; cloud providers, budgets, and related security
+  controls appear only in a separate, deliberately entered advanced path;
 - authorized administrator approval plus a full service restart for any change
   that can materially affect operation, privacy, security, data handling, cloud
   fallback, secrets or key factors, integrations, profiles, or permissions;
