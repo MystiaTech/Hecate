@@ -144,6 +144,64 @@ Hecate must not claim HIPAA compliance. The optional review records risk,
 access-control, audit, retention, encryption, backup/recovery, and cloud/BAA
 considerations; it is not a generic blocker for every push.
 
+## Step 0.5: household permissions and action safety
+
+Hecate defaults to read-only and advisory behavior. Changing a physical home
+device or external account requires explicit, contextual confirmation unless an
+authorized household administrator has created a narrowly scoped, auditable
+automation rule. Every rule names allowed action, allowed target(s), conditions
+or schedule, and revocation or expiry; broad or hidden authority is prohibited.
+Speaker identity is convenience context, never sensitive-action authorization.
+
+Version-one automation is limited to low-impact controls. A direct, unambiguous
+request may immediately change an approved named light without redundant
+confirmation. A requested contextual lighting rule and an administrator-created
+scheduled watering rule require clear preview and confirmation before creation,
+then may execute exactly as stated. Rules require target disambiguation,
+revocation/expiry, disabled-state visibility, local audit, and safe failure.
+Hecate cannot infer, broaden, or retarget a rule. Watering cannot make autonomous
+weather/model decisions in version one. Locks, cameras, purchases, permissions,
+and account changes are excluded from automation.
+
+Children and guests may use only approved direct low-impact controls allowed by
+their profile. Only household administrators may create, change, enable,
+disable, or delete schedules and automation rules, and may revoke child/guest
+access. Unrecognized or ambiguous speakers fail safely; voice recognition never
+grants action permission or high-impact authority.
+
+The gate requires implementation and tests for:
+
+- distinct notification, advisory/read-only, proposed-action, confirmed-action,
+  and automation-rule permission classes;
+- confirmation bound to a stated action, target, material effect, and expiry,
+  with safe denial, cancellation, replay prevention, and failure behavior;
+- stronger authorized-administrator approval for high-impact actions; Hecate
+  never independently chooses such an action, and schedules/rules do not bypass
+  confirmation without a later separate, test-gated safety design;
+- local-first permission evaluation, minimized audit, immediate revocation, and
+  fail-closed handling of ambiguous, stale, corrupt, or unavailable authority;
+- local, administrator-visible, privacy-minimized activity history attributing
+  every state change to a direct request, explicit confirmation, or named rule;
+- brief, plain-language refusals and failure explanations with a safe next step,
+  no blame or protected detail, plus an accessible non-voice status path;
+- proactive reminders and package/delivery notices governed by transparent,
+  revocable routing, cadence, rate-limit, and quiet-hours preferences; and
+- optional severe-weather monitoring through an explicitly enabled external
+  source, with source freshness and availability visible where practical.
+
+Source-backed severe-weather alerts bypass quiet hours by default. Routine
+notices and non-urgent forecasts remain quiet-hours aware unless an authorized
+administrator narrowly elevates a transparent, revocable category. Weather is
+not fully offline, emergency-grade, guaranteed, or a substitute for official
+alerts and instructions; Hecate must not invent urgency or issue evacuation
+instructions.
+
+If enabled severe-weather coverage becomes stale or unavailable, Hecate must
+announce the loss without panic or false authority, neutrally direct people to
+official alert channels, use configurable non-spammy retry/notification behavior,
+and announce verified recovery. The severe-alert quiet-hours bypass also applies
+to this loss-of-coverage state. Local core behavior remains available throughout.
+
 Any unresolved safety, offline, audio, data-integrity, privacy, or power failure
 keeps its gate open. Non-gating improvements may move to follow-up issues only
 after review.
