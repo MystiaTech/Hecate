@@ -213,6 +213,100 @@ preparation reminder that an authorized administrator may change or disable.
 This is source-deadline arithmetic only: Hecate never calculates travel or safe-
 distance time, infers clearance, or gives evacuation/shelter instructions.
 
+## Step 0.6: reliability and recovery
+
+The reliability gate requires safe, observable behavior across startup,
+shutdown, restart, and degraded operation. Hecate restores only safe core local
+services, such as status and eligible listening paths, after a crash or host
+reboot. It never silently enables cloud fallback or treats recovery as authority
+to replay a pending, interrupted, or previously requested state-changing action.
+Such an action needs fresh confirmation or a still-valid narrow rule evaluated
+for the current context.
+
+If a service, integration, action path, or automation rule may have contributed
+to a crash or forced restart, Hecate quarantines it from automatic retry,
+explains the condition to an administrator in plain language, and requires
+explicit review and safe validation before re-enablement. Recovery uses bounded
+watchdog retries and backoff to avoid restart loops, duplicate actions, and
+duplicate notifications. Low-impact schedules do not silently make up missed
+executions after downtime.
+
+A microphone, speaker, GPU, local model, or other component failure keeps
+unaffected safe services operating. Status identifies the unavailable feature
+in accessible, plain language without exposing sensitive diagnostics. Automatic
+recovery targets only the failed component and uses bounded backoff and circuit
+breaking; it does not repeatedly restart the whole assistant, invoke cloud
+fallback, or bypass an existing crash quarantine.
+
+Recovery after a power interruption or reboot is staged rather than all-at-once:
+verify the core process, configuration and data integrity, and required service
+dependencies; observe a stable-health window; restore safe local core services;
+then progressively restore optional integrations, models, audio, and
+notifications only after their own health checks pass. A recovery notice follows
+those checks. Hecate does not guess whether a surge or brief outage caused the
+event, overstate UPS protection, replay missed work, or enable quarantined
+components. An unhealthy dependency leaves the affected feature visibly and
+gracefully degraded.
+
+An ordinary significant failure is announced once when its state changes and
+once after staged health checks verify recovery; continuing detail stays on the
+local status surface. A dependency may use a bounded, accessible repeat or
+escalation cadence until acknowledgement or material status change only when an
+administrator has explicitly configured it as critical. Hardware such as a GPU
+or local model is not universally critical. Notifications honor the applicable
+quiet-hours policy, fall back to non-voice status when speech is unavailable,
+avoid storms, and never expose sensitive diagnostics or claim recovery early.
+
+Updates are tiered. Only an explicitly designated low-risk compatibility or
+integration update may apply automatically, and only after trusted-source,
+provenance/integrity, classification, preflight health, rollback, and visible
+change-record checks pass; administrators can disable this automation. Functional
+or model changes, security/privacy/configuration/permission changes, new
+integrations, migrations, and anything not explicitly eligible require
+administrator approval before installation. An update never silently changes
+permissions, cloud settings, secrets, action-safety policy, or high-impact
+behavior. Failure restores known-safe service and reports plain-language status.
+
+The gate requires implementation and reproducible tests for:
+
+- ordered, bounded startup, shutdown, and full-restart behavior with local
+  health/status and accessible, plain-language diagnostics;
+- graceful offline degradation without hidden cloud fallback, including
+  continued local status and recovery paths;
+- recovery from service crash, host reboot or power loss, audio-device loss,
+  model or GPU failure, and enabled optional provider/source loss;
+- partial-health behavior, device disconnect/reconnect, component-scoped retry
+  limits, circuit breaking, verified recovery, and accessible status;
+- staged power-cycle recovery, dependency order and timeouts, a stable-health
+  window, rapid power-flap handling, corruption-safe recovery, and notices that
+  neither duplicate prior notifications nor announce success prematurely;
+- ordinary versus explicitly configured critical failure notifications,
+  acknowledgement, bounded cadence, quiet-hours handling, voice-unavailable
+  status alternatives, and no-false-recovery behavior;
+- quarantine, explicit review/re-enable, watchdog/backoff, and crash-loop
+  behavior for an implicated component or rule;
+- bounded durable and in-memory queues, idempotency keys, checkpoints, and
+  duplicate suppression for actions and notifications across restart;
+- schedule behavior across downtime, restarts, clock or time-zone changes, and
+  daylight-saving transitions: missed occurrences are skipped, never replayed
+  as catch-up, and each occurrence is at-most-once even across repeated wall
+  times; skipped and duplicate-prevented states remain visible in local history;
+- validation and atomic recovery of configuration and protected secrets without
+  exposing, resetting, weakening, or logging sensitive values;
+- tiered update classification, trusted-source and integrity/provenance checks,
+  staging, preflight health, administrator approval where required, opt-out,
+  power-loss-safe rollback, incompatibility handling, and local change records;
+- privacy-minimized local diagnostic records with role-scoped access, bounded
+  retention, protected export, and no automatic GitHub or cloud upload; and
+- a public-safe evidence matrix covering normal recovery, injected failures,
+  partial work, repeated faults, safe degraded states, and administrator-visible
+  status using only synthetic data.
+
+High-impact actions never run automatically during recovery. Activity and
+recovery traceability remains local. Documentation alone does not complete this
+gate; any unresolved duplicate-action, retry, crash-loop, data-integrity,
+privacy, authorization, or fail-visible status defect keeps Step 0.6 open.
+
 Any unresolved safety, offline, audio, data-integrity, privacy, or power failure
 keeps its gate open. Non-gating improvements may move to follow-up issues only
 after review.
