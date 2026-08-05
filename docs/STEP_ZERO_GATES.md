@@ -110,10 +110,19 @@ The configuration gate requires reviewed implementations and tests for:
 
 - a versioned YAML schema with safe defaults and a fork-safe example;
 - development-only `.env` support excluded from Git, logs, status, and vaults;
-- an optional encrypted secrets store using an OS-protected key, optional user
-  recovery key, and humane lost-key/recovery behavior;
+- an optional encrypted secrets store using both an OS-protected local key for
+  normal operation and a user-held recovery key, with no cloud key escrow;
+- an optional, standards-compatible hardware-security-key factor that is
+  explicitly enrolled, removable, revocable, and vendor-neutral, with clear
+  lost-key and recovery behavior;
 - a friendly setup flow, plain-language errors, and explicit reload/restart
   semantics;
+- authorized administrator approval plus a full service restart for any change
+  that can materially affect operation, privacy, security, data handling, cloud
+  fallback, secrets or key factors, integrations, profiles, or permissions;
+- optional live reload only for low-risk cosmetic and ordinary UI preferences,
+  with invalid changes rejected before activation and the current running
+  configuration left undisturbed;
 - local-only behavior by default, including a reliable cloud-fallback disable;
 - unit, integration, security, and privacy evidence; and
 - an optional HIPAA-readiness review only for enabled compliance-oriented
