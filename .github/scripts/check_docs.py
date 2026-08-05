@@ -31,6 +31,7 @@ REQUIRED_FILES = (
     ".github/pull_request_template.md",
     ".github/CODEOWNERS",
     ".github/dependabot.yml",
+    ".github/workflows/codeql.yml",
 )
 
 REQUIRED_PHRASES = {
