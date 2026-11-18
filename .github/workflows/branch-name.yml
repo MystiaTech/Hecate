@@ -1,0 +1,36 @@
+name: Branch name
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate branch name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check pull request branch
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+          BASE_BRANCH: ${{ github.base_ref }}
+        shell: bash
+        run: |
+          if [[ "$BASE_BRANCH" == "main" && "$BRANCH_NAME" == "Dev" ]]; then
+            echo "Valid release promotion: Dev -> main"
+            exit 0
+          fi
+
+          pattern='^(feat|fix|docs|chore|refactor|test|ci|security|release|agent)/[a-z0-9]+([.-][a-z0-9]+)*(/[a-z0-9]+([.-][a-z0-9]+)*)*$'
+
+          if [[ ! "$BRANCH_NAME" =~ $pattern ]]; then
+            echo "Invalid branch name: $BRANCH_NAME"
+            echo "Use: feat|fix|docs|chore|refactor|test|ci|security|release/<lowercase-kebab-case>"
+            echo "The agent/ prefix is reserved for approved automation."
+            echo "See docs/BRANCHING.md for examples and policy details."
+            exit 1
+          fi
+
+          echo "Valid branch name: $BRANCH_NAME"

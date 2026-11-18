@@ -1,0 +1,24 @@
+name: Promotion source
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, edited, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate promotion source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require Dev as the source branch
+        env:
+          SOURCE_BRANCH: ${{ github.head_ref }}
+        shell: bash
+        run: |
+          if [[ "$SOURCE_BRANCH" != "Dev" ]]; then
+            echo "Pull requests to main must originate from exact-case Dev."
+            exit 1
+          fi

@@ -1,0 +1,26 @@
+name: Documentation integrity
+
+on:
+  pull_request:
+    branches: [Dev, main]
+  push:
+    branches: [Dev, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check Markdown and policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate documentation
+        run: python3 .github/scripts/check_docs.py
